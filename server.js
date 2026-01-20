@@ -1,42 +1,50 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const cors = require("cors");
-require("dotenv").config();
-
-const agentRoutes = require("./routes/agentRoutes");
-const customerRoutes = require("./routes/customerRoutes");
-const propertyRoutes = require("./routes/propertyRoutes");
-const adminRoutes = require("./routes/adminRoutes");
-
-const app = express();
-
-/* MIDDLEWARE */
-app.use(cors());
-app.use(express.json());
-app.use("/uploads", express.static("uploads"));
-
-/* ROUTES */
-app.use("/api/agents", agentRoutes);
-app.use("/api/customers", customerRoutes);
-app.use("/api/properties", propertyRoutes);
-app.use("/api/admin", adminRoutes);
-
-/* DEFAULT ROUTE */
-app.get("/", (req, res) => {
-    res.send("HOME Backend is running");
-});
-
-/* DATABASE CONNECTION */
-mongoose
-    .connect(process.env.MONGO_URI)
-    .then(() => {
-        console.log("MongoDB connected");
-
-        const PORT = process.env.PORT || 5000;
-        app.listen(PORT, () => {
-            console.log(`Server running on port ${PORT}`);
-        });
-    })
-    .catch(err => {
-        console.error("MongoDB connection error:", err);
-    });
+  connectionGeneration: 0
+}
+==> Application exited early
+==> Common ways to troubleshoot your deploy: https://render.com/docs/troubleshooting-deploys
+==> Running 'node server.js'
+[dotenv@17.2.3] injecting env (0) from .env -- tip: ⚙️  override existing env vars with { override: true }
+MongoDB connection error: MongoServerError: bad auth : authentication failed
+    at Connection.sendCommand (/opt/render/project/src/node_modules/mongodb/lib/cmap/connection.js:320:27)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Connection.command (/opt/render/project/src/node_modules/mongodb/lib/cmap/connection.js:344:26)
+    at async continueScramConversation (/opt/render/project/src/node_modules/mongodb/lib/cmap/auth/scram.js:131:15)
+    at async executeScram (/opt/render/project/src/node_modules/mongodb/lib/cmap/auth/scram.js:80:5)
+    at async ScramSHA1.auth (/opt/render/project/src/node_modules/mongodb/lib/cmap/auth/scram.js:39:16)
+    at async performInitialHandshake (/opt/render/project/src/node_modules/mongodb/lib/cmap/connect.js:104:13)
+    at async connect (/opt/render/project/src/node_modules/mongodb/lib/cmap/connect.js:24:9) {
+  errorLabelSet: Set(2) { 'HandshakeError', 'ResetPool' },
+  errorResponse: {
+    ok: 0,
+    errmsg: 'bad auth : authentication failed',
+    code: 8000,
+    codeName: 'AtlasError'
+  },
+  ok: 0,
+  code: 8000,
+  codeName: 'AtlasError',
+  connectionGeneration: 0
+}
+==> Running 'node server.js'
+[dotenv@17.2.3] injecting env (0) from .env -- tip: 🔐 prevent building .env in docker: https://dotenvx.com/prebuild
+MongoDB connection error: MongoServerError: bad auth : authentication failed
+    at Connection.sendCommand (/opt/render/project/src/node_modules/mongodb/lib/cmap/connection.js:320:27)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Connection.command (/opt/render/project/src/node_modules/mongodb/lib/cmap/connection.js:344:26)
+    at async continueScramConversation (/opt/render/project/src/node_modules/mongodb/lib/cmap/auth/scram.js:131:15)
+    at async executeScram (/opt/render/project/src/node_modules/mongodb/lib/cmap/auth/scram.js:80:5)
+    at async ScramSHA1.auth (/opt/render/project/src/node_modules/mongodb/lib/cmap/auth/scram.js:39:16)
+    at async performInitialHandshake (/opt/render/project/src/node_modules/mongodb/lib/cmap/connect.js:104:13)
+    at async connect (/opt/render/project/src/node_modules/mongodb/lib/cmap/connect.js:24:9) {
+  errorLabelSet: Set(2) { 'HandshakeError', 'ResetPool' },
+  errorResponse: {
+    ok: 0,
+    errmsg: 'bad auth : authentication failed',
+    code: 8000,
+    codeName: 'AtlasError'
+  },
+  ok: 0,
+  code: 8000,
+  codeName: 'AtlasError',
+  connectionGeneration: 0
+}
