@@ -28,7 +28,8 @@ app.get("/", (req, res) => {
 });
 
 /* MONGODB CONNECTION */
-mongoose.connect("mongodb://127.0.0.1:27017/home_db")
+mongoose.connect(process.env.MONGO_URI);
+
     .then(() => {
         console.log("MongoDB Connected");
     })
@@ -41,3 +42,4 @@ const PORT = 5000;
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
+
