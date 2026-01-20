@@ -26,6 +26,7 @@ app.use("/api/auth", authRoutes);
 app.get("/", (req, res) => {
     res.send("HOME API is running...");
 });
+require("dotenv").config();
 
 /* MONGODB CONNECTION */
 mongoose.connect(process.env.MONGO_URI);
@@ -42,4 +43,5 @@ const PORT = 5000;
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
+
 
